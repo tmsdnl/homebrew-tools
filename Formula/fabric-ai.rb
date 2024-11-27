@@ -17,6 +17,7 @@ class Fabric < Formula
   end
 
   def install
+    mv cached_download, "fabric"
     bin.install "fabric"
     chmod "+x", bin/"fabric"
   end
