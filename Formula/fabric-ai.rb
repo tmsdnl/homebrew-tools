@@ -1,4 +1,4 @@
-class Fabric < Formula
+class FabricAi < Formula
   desc "Open-source framework for augmenting humans using AI."
   homepage "https://github.com/danielmiessler/fabric"
   version "1.4.114"
