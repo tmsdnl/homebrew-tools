@@ -1,6 +1,6 @@
 cask "apiparrot" do
-    version "0.3.0"
-    sha256 "e2b8e5c238e1931325dc301671e2b168fcf3cab9345160e424bc593863df7c14"
+    version "0.3.1"
+    sha256 "9546ad72e4b06e2bb6a917474b9708b73b8bbbba95508c69d40a195e769bedb4"
   
     url "https://github.com/apiparrot/apiparrot-desktop-releases/releases/download/v#{version}/API-Parrot-#{version}-universal.dmg"
     name "API Parrot"
