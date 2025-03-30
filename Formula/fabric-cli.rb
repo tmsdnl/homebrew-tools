@@ -1,16 +1,16 @@
 class FabricCli < Formula
   desc "Open-source framework for augmenting humans using AI."
   homepage "https://github.com/danielmiessler/fabric"
-  version "v1.4.165"
+  version "v1.4.166"
   license "MIT"
 
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/danielmiessler/fabric/releases/latest/download/fabric-darwin-arm64"
-      sha256 "105f0d588c200b65c4f4d671715fa4e50e60655167739359b9380bf09ebc31bf"
+      sha256 "5c1022e0fe9b58b395b8aff8079e02caef69be9437dc8e6bd7037a74543f6aa9"
     else
       url "https://github.com/danielmiessler/fabric/releases/latest/download/fabric-darwin-amd64"
-      sha256 "058eac7f0fe99ffd9e50e51b714453a8bf4750fcbbbb051ab5560d4a26abdeb8"
+      sha256 "2d07835c352262eba247114c697940f139b77bdc9c8f78b30cb83505e28fe2ab"
     end
   else
     odie "Fabric is currently only supported on macOS."
