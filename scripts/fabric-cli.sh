@@ -3,7 +3,8 @@
 # CONFIGURATION
 FABRIC_REPO="danielmiessler/fabric"
 GITHUB_REPO="tmsdnl/homebrew-tools"
-FORMULA_FILE="../Formula/fabric-cli.rb"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FORMULA_FILE="$SCRIPT_DIR/../Formula/fabric-cli.rb"
 GIT_BRANCH="main"
 
 # Define the assets to download
