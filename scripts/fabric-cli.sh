@@ -42,8 +42,8 @@ for ASSET in "${ASSETS[@]}"; do
     DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$FABRIC_REPO/releases/latest" | jq -r ".assets[] | select(.name == \"$ASSET\") | .browser_download_url")
 
     if [[ -z "$DOWNLOAD_URL" ]]; then
-        echo "Error: No matching download URL found for $ASSET"
-        exit 1
+        echo "Warning: Asset $ASSET not found in the latest release"
+        continue
     fi
 
     echo "Downloading $ASSET..."
@@ -75,8 +75,15 @@ fi
 
 # Update the formula file
 "${SED_INPLACE[@]}" "s/version \".*\"/version \"$LATEST_RELEASE\"/" "$FORMULA_FILE"
-"${SED_INPLACE[@]}" "/fabric-darwin-arm64/{n;s/sha256 \".*\"/sha256 \"${SHA256_ARM64["fabric-darwin-arm64"]}\"/;}" "$FORMULA_FILE"
-"${SED_INPLACE[@]}" "/fabric-darwin-amd64/{n;s/sha256 \".*\"/sha256 \"${SHA256_AMD64["fabric-darwin-amd64"]}\"/;}" "$FORMULA_FILE"
+
+# Only update SHA256 values for assets that were found
+if [[ -n "$SHA256_ARM64" ]]; then
+  "${SED_INPLACE[@]}" "/fabric-darwin-arm64/{n;s/sha256 \".*\"/sha256 \"$SHA256_ARM64\"/;}" "$FORMULA_FILE"
+fi
+
+if [[ -n "$SHA256_AMD64" ]]; then
+  "${SED_INPLACE[@]}" "/fabric-darwin-amd64/{n;s/sha256 \".*\"/sha256 \"$SHA256_AMD64\"/;}" "$FORMULA_FILE"
+fi
 
 echo "Formula updated!"
 
